@@ -7,7 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface TeliaCarousel {
-        "timerDelay": number;
+        "autoplayTimer": number;
     }
     interface TeliaCarouselSlide {
         "active": boolean;
@@ -40,7 +40,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface TeliaCarousel {
-        "timerDelay"?: number;
+        "autoplayTimer"?: number;
     }
     interface TeliaCarouselSlide {
         "active"?: boolean;

@@ -1,4 +1,4 @@
-import { Component, Host, h, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop, Host } from '@stencil/core';
 
 @Component({
   tag: 'telia-carousel-slide',
@@ -20,17 +20,23 @@ export class TeliaCarouselSlide {
   render() {
     return (
       <Host>
-        <img
-          loading="lazy"
+        <article
           class={{
             'telia-carousel-slide': true,
             'telia-carousel-slide--active': this.active,
-            'telia-carousel-slide--contain': this.variant === 'contain',
-            'telia-carousel-slide--cover': this.variant === 'cover',
           }}
-          src={this.src}
-          alt={this.alt}
-        />
+        >
+          <img
+            alt={this.alt}
+            src={this.src}
+            class={{
+              'telia-carousel-slide__image': true,
+              'telia-carousel-slide__image--contain': this.variant === 'contain',
+              'telia-carousel-slide__image--cover': this.variant === 'cover',
+            }}
+            loading="lazy"
+          />
+        </article>
       </Host>
     );
   }

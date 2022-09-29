@@ -57,7 +57,7 @@
     }
   }
 
-  &__page-indicator {
+  &__controls {
     position: absolute;
     bottom: $telia-spacing-16;
     width: 100%;
@@ -66,18 +66,13 @@
     align-items: center;
     text-align: center;
     z-index: 10;
+  }
 
-    telia-p {
-      padding: $telia-spacing-0 $telia-spacing-16;
-      @include telia-color('white');
-      background-color: rgba($telia-black, 0.7);
-      @include telia-border-radius('full');
-      transition: all $telia-duration-150 $telia-ease-in-out;
-
-      &:hover {
-        @include telia-bg-color('black');
-      }
-    }
+  &__page-indicator {
+    padding: $telia-spacing-4 $telia-spacing-24;
+    @include telia-color('white');
+    @include telia-bg-color('black');
+    @include telia-border-radius('full');
   }
 
   &__slides {

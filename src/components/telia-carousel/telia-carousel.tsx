@@ -9,18 +9,23 @@ import { chevronLeft, chevronRight } from '@teliads/icons';
 export class TeliaCarousel {
   @Element() hostElement: HTMLTeliaCarouselElement;
 
-  @Prop({ reflect: true }) timerDelay: number = 0;
+  @Prop({ reflect: true }) autoplayTimer: number = 0;
 
   @State() activeSlideIndex = 0;
   @State() numberOfSlides = 0;
 
   observer: MutationObserver;
 
+  constructor() {
+    this.onNextClick = this.onNextClick.bind(this);
+    this.onPrevClick = this.onPrevClick.bind(this);
+  }
+
   connectedCallback() {
     this.observer = new MutationObserver(this.updateNumberOfSlides.bind(this));
 
-    if (this.timerDelay > 0) {
-      setInterval(this.onNextClick.bind(this), this.timerDelay * 1000);
+    if (this.autoplayTimer > 0) {
+      setInterval(this.onNextClick, this.autoplayTimer * 1000);
     }
   }
 
@@ -83,21 +88,27 @@ export class TeliaCarousel {
             <button
               type="button"
               class="telia-carousel__navigation-button"
-              onClick={() => this.onPrevClick()}
+              onClick={this.onPrevClick}
+              title="Go to previous slide"
             >
               <telia-icon svg={chevronLeft.svg} size="lg"></telia-icon>
             </button>
             <button
               type="button"
               class="telia-carousel__navigation-button"
-              onClick={() => this.onNextClick()}
+              onClick={this.onNextClick}
+              title="Go to next slide"
             >
               <telia-icon svg={chevronRight.svg} size="lg"></telia-icon>
             </button>
           </div>
 
-          <div class="telia-carousel__page-indicator">
-            <telia-p variant="preamble-200">
+          <div class="telia-carousel__controls">
+            <telia-p
+              class="telia-carousel__page-indicator"
+              variant="preamble-200"
+              title={`Page ${this.activeSlideIndex + 1} out of ${this.numberOfSlides}`}
+            >
               {this.activeSlideIndex + 1}/{this.numberOfSlides}
             </telia-p>
           </div>
